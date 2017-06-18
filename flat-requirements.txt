@@ -1,0 +1,1 @@
+zsh tmux gvim vim-runtime git ctags vim-vimproc-git unclutter-xfixes-git xclip flake8 nerd-fonts-complete

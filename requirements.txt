@@ -1,0 +1,32 @@
+##################
+## REQUIREMENTS ##
+##################
+
+There is a list of some requirements for my dotfiles. 
+I did not write installation script because different operation systems has different package managers and I am too lazy for common script. 
+There are no guarantees that I have not forgotten anything ¯\_(ツ)_/¯
+
+Installation:
+You can try install it all with your package manager (yaourt -S `cat ./flat-requirements.txt`).
+Some dependencies install equally on all unix-like systems (make download-deps).
+
+Main packages:
+* zsh (should be default shell)
+* gvim
+* tmux
+* git
+
+Plugins managers:
+* Vundle [ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim ]
+* tpm [ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm ]
+* oh-my-zsh [ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" ]
+
+Dependencies:
+* ctags
+* vim-vimproc
+* vim-runtime
+* powerlevel9k [ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k ]
+* nerd-fonts-complete or other fonts with lot of icons like 
+* unclutter
+* xclip
+* linters for programming languages like the flake8 for Python (optional)
