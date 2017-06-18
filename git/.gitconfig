@@ -1,8 +1,8 @@
 [user]
-	email = poslegm@gmail.com
-	name = Mikhail Chugunkov
+    email = poslegm@gmail.com
+    name = Mikhail Chugunkov
 [credential]
-	helper = store
+    helper = store
 [core]
     editor = vim
 [color]

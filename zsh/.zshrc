@@ -1,4 +1,5 @@
 # ====== VISUAL ====== 
+export TERM="xterm-256color"
 # requires custom theme 
 # git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 ZSH_THEME="powerlevel9k/powerlevel9k"

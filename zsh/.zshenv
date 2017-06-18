@@ -1,6 +1,6 @@
 for DOTFILE in `find /home/poslegm/.dotfiles/zsh -type f`
 do
-    if [[ $DOTFILE != *"zsh_profile"* ]]; then
+    if [[ $DOTFILE != *"zshenv"* ]]; then
         source $DOTFILE
     fi
 done 

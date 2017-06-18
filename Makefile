@@ -9,9 +9,9 @@ download-deps:
 
 install:
 	echo "I hope that all dependencies are installed..."
-	ln -sv "/home/poslegm/.dotfiles/zsh/.zsh_profile" ~
+	ln -sv "/home/poslegm/.dotfiles/zsh/.zshenv" ~
 	ln -sv "/home/poslegm/.dotfiles/vim/.vimrc" ~
 	ln -sv "/home/poslegm/.dotfiles/git/.gitconfig" ~
 	ln -sv "/home/poslegm/.dotfiles/tmux/.tmux.conf" ~
-	source "/home/poslegm/.zsh_profile"
+	source "/home/poslegm/.zprofile"
 	vim -c PluginInstall
