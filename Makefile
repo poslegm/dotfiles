@@ -13,5 +13,5 @@ install:
 	ln -sv "/home/poslegm/.dotfiles/vim/.vimrc" ~
 	ln -sv "/home/poslegm/.dotfiles/git/.gitconfig" ~
 	ln -sv "/home/poslegm/.dotfiles/tmux/.tmux.conf" ~
-	source "/home/poslegm/.zprofile"
+	source "/home/poslegm/.zshenv"
 	vim -c PluginInstall
