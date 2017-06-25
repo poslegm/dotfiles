@@ -41,6 +41,7 @@ export EDITOR="vim"
 # ====== SHELL ====== 
 alias -s {py,ml,hs,erl,scala,java,go,cpp,c}=vim
 alias -s {pdf,ps}=evince
+alias -s {png,jpg,bmp,gif}=eog
 alias -s {doc,odt}=libreoffice
 
 set extendedglob # search by regexp in paths (ls **/src/*.erl)
