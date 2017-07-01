@@ -23,7 +23,7 @@ ENABLE_CORRECTION="true"
 
 HIST_STAMPS="dd-mm-yyyy"
 
-plugins=(git archlinux tmux scala sbt nyan pip)
+plugins=(git archlinux tmux scala sbt nyan pip python vagrant)
 
 # automatically start a tmux session upon logging in
 ZSH_TMUX_AUTOSTART=false
