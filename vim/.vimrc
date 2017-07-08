@@ -229,3 +229,6 @@ endif
 
 " =============== Languages =============== 
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
+let g:ale_linters = {
+\   'go': ['go build', 'go vet'],
+\}
