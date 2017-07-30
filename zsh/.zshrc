@@ -19,7 +19,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs root_indicator background_jobs)
 
 # command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 HIST_STAMPS="dd-mm-yyyy"
 
