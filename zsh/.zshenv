@@ -8,4 +8,5 @@ done
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
   xrandr --dpi 276
   unclutter --timeout 8 &
+  rm ~/Pictures/Screenshot\ from\ *
 fi
