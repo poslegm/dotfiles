@@ -14,9 +14,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Status line
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-" Shell
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/vimshell.vim'
 " File tree
 Plugin 'scrooloose/nerdtree'
 " File search
@@ -53,7 +50,6 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'fatih/vim-go'
 Plugin 'neovimhaskell/haskell-vim'
-
 " =============== Plugins end =============== 
 call vundle#end()
 
@@ -140,6 +136,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 autocmd Filetype scala setlocal ts=2 sw=2 autoindent
+autocmd Filetype ml setlocal ts=2 sw=2 autoindent
 autocmd Filetype sh setlocal ts=2 sw=2 autoindent
 
 " enable plugins by filetypes
@@ -219,9 +216,6 @@ if has('persistent_undo')
   set undodir=~/.vim/backups
   set undofile
 endif
-
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-let g:vimshell_prompt =  '$ '
 
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
