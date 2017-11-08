@@ -49,7 +49,8 @@ Plugin 'elzr/vim-json'
 Plugin 'pangloss/vim-javascript'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'fatih/vim-go'
-Plugin 'neovimhaskell/haskell-vim'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'eagletmt/neco-ghc'
 " =============== Plugins end =============== 
 call vundle#end()
 
@@ -136,7 +137,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 autocmd Filetype scala setlocal ts=2 sw=2 autoindent
-autocmd Filetype ml setlocal ts=2 sw=2 autoindent
+autocmd Filetype ocaml setlocal ts=2 sw=2 autoindent
 autocmd Filetype sh setlocal ts=2 sw=2 autoindent
 
 " enable plugins by filetypes
@@ -238,4 +239,11 @@ let g:ctrlp_cmd = 'call CtrlPCommand()'
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
 let g:ale_linters = {
 \   'go': ['go build', 'go vet'],
+\   'javascript': ['eslint'],
 \}
+
+let g:necoghc_enable_detailed_browse = 1 " show types of haskell functions
+map <silent> ti :GhcModTypeInsert<CR>
+map <silent> ts :GhcModSplitFunCase<CR>
+map <silent> tt :GhcModType<CR>
+map <silent> tc :GhcModTypeClear<CR>

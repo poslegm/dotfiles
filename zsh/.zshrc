@@ -19,11 +19,11 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs root_indicator background_jobs)
 
 # command auto-correction.
-ENABLE_CORRECTION="false"
+ENABLE_CORRECTION=""
 
 HIST_STAMPS="dd-mm-yyyy"
 
-plugins=(git archlinux tmux scala sbt nyan pip python vagrant)
+plugins=(git archlinux tmux scala sbt nyan pip python vagrant stack)
 
 # automatically start a tmux session upon logging in
 ZSH_TMUX_AUTOSTART=false
