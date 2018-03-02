@@ -49,8 +49,6 @@ Plugin 'elzr/vim-json'
 Plugin 'pangloss/vim-javascript'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'fatih/vim-go'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'eagletmt/neco-ghc'
 " =============== Plugins end =============== 
 call vundle#end()
 
@@ -148,7 +146,7 @@ filetype plugin indent on
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#min_keyword_length = 1
 
 " auto close buffers after cursor movement
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -240,10 +238,5 @@ autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
 let g:ale_linters = {
 \   'go': ['go build', 'go vet'],
 \   'javascript': ['eslint'],
+\   'python': ['flake8']
 \}
-
-let g:necoghc_enable_detailed_browse = 1 " show types of haskell functions
-map <silent> ti :GhcModTypeInsert<CR>
-map <silent> ts :GhcModSplitFunCase<CR>
-map <silent> tt :GhcModType<CR>
-map <silent> tc :GhcModTypeClear<CR>

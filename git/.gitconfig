@@ -25,3 +25,11 @@
     oldHighlight = "red bold 52"
     newNormal = "green bold"
     newHighlight = "green bold 22"
+[alias]
+    p = push
+    st = status
+    ci = commit
+    co = checkout
+    l = log --graph --abbrev-commit --date=relative
+    la = !git l --all
+    tree = !git la --oneline
