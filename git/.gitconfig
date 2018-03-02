@@ -27,6 +27,7 @@
     newHighlight = "green bold 22"
 [alias]
     p = pull
+    pu = push
     st = status
     ci = commit
     co = checkout
