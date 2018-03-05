@@ -30,6 +30,7 @@
     pu = push
     st = status
     ci = commit
+    cia = commit -a
     co = checkout
     l = log --graph --abbrev-commit --date=relative
     la = !git l --all
