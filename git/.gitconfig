@@ -28,7 +28,7 @@
 [alias]
     p = pull
     pu = push
-    puo = git push -u origin HEAD
+    puo = push -u origin HEAD
     st = status
     ci = commit
     cia = commit -a
