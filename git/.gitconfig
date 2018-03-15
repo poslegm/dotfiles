@@ -30,6 +30,7 @@
     pu = push
     puo = push -u origin HEAD
     st = status
+    ai = add -i
     ci = commit
     cia = commit -a
     co = checkout
