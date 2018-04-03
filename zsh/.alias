@@ -3,7 +3,7 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias ports='netstat -tulpn'
 alias size='du -sh'
-alias tmuxon='tmux attach || tmux new'
+alias tmuxon='(tmux attach || tmux new) && tdef'
 alias tdef='~/.dotfiles/tmux/default-session.sh'
 alias tide='~/.dotfiles/tmux/ide-session.sh'
 # Because libreoffice works bad on HiDPI with default settings
