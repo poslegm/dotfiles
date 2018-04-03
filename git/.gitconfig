@@ -35,6 +35,8 @@
     cia = commit -a
     co = checkout
     cob = checkout -b
+    com = checkout master
+    mm = merge master
     l = log --graph --abbrev-commit --date=relative
     la = !git l --all
     tree = !git la --oneline
