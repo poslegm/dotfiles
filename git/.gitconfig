@@ -27,6 +27,7 @@
     newHighlight = "green bold 22"
 [alias]
     p = pull
+    pm = !git checkout master && git pull && git checkout -
     pu = push
     puo = push -u origin HEAD
     st = status
