@@ -12,5 +12,6 @@ install:
 	ln -sv "/home/poslegm/.dotfiles/vim/.vimrc" ~
 	ln -sv "/home/poslegm/.dotfiles/git/.gitconfig" ~
 	ln -sv "/home/poslegm/.dotfiles/tmux/.tmux.conf" ~
+	mkdir ~/.ammonite 2> /dev/null; ln -sv "/home/poslegm/.dotfiles/ammonite/predef.sc" ~/.ammonite
 	source "/home/poslegm/.zshenv"
 	vim -c PluginInstall
