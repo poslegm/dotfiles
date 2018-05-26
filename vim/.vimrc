@@ -16,8 +16,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " File tree
 Plugin 'scrooloose/nerdtree'
-" File search
-Plugin 'kien/ctrlp.vim'
 " Git
 Plugin 'tpope/vim-fugitive'
 " Colors
@@ -46,9 +44,8 @@ Plugin 'alvan/vim-closetag'
 Plugin 'davidhalter/jedi-vim'
 " some formats
 Plugin 'elzr/vim-json'
-Plugin 'pangloss/vim-javascript'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'fatih/vim-go'
+Plugin 'tpope/vim-fireplace' 
+Plugin 'guns/vim-clojure-static' 
 " =============== Plugins end =============== 
 call vundle#end()
 
@@ -145,8 +142,11 @@ filetype plugin indent on
 " autocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#disable_auto_complete = 1
 
-let g:neocomplete#sources#syntax#min_keyword_length = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#auto_complete_delay = 1000
+let g:neocomplete#max_list = 10
 
 " auto close buffers after cursor movement
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -220,19 +220,6 @@ if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
 
-" For CtrlP and NERDTree friendship
-function! CtrlPCommand()
-    let c = 0
-    let wincount = winnr('$')
-    " Don't open it here if current buffer is not writable (e.g. NERDTree)
-    while !empty(getbufvar(+expand("<abuf>"), "&buftype")) && c < wincount
-        exec 'wincmd w'
-        let c = c + 1
-    endwhile
-    exec 'CtrlP'
-endfunction
-
-let g:ctrlp_cmd = 'call CtrlPCommand()'
 " =============== Languages =============== 
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
 let g:ale_linters = {
