@@ -159,6 +159,8 @@ filetype plugin indent on
 " autocomplete
 let g:deoplete#enable_at_startup = 1
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+set cpt=.,b,w,i
+call deoplete#custom#option('ignore_sources', {'_': ['tag']})
 
 " auto close buffers after cursor movement
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
