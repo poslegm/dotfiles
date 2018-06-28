@@ -1,5 +1,6 @@
 set nocompatible
 filetype off
+set encoding=utf-8
 
 let $PATH = $PATH . ':' . expand("~/.local/bin")
 
@@ -21,7 +22,6 @@ Plugin 'tpope/vim-fugitive'
 " Colors
 Plugin 'nanotech/jellybeans.vim'
 " Autocomplete
-Plugin 'Shougo/neocomplete.vim'
 Plugin 'ervandew/supertab'
 " Syntax checking
 Plugin 'w0rp/ale'
@@ -48,6 +48,23 @@ Plugin 'tpope/vim-fireplace'
 Plugin 'guns/vim-clojure-static' 
 " =============== Plugins end =============== 
 call vundle#end()
+
+call plug#begin('~/.vim/plugged')
+" ============= Vim-Plug begin =============== 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plug 'fsharp/vim-fsharp', {
+      \ 'for': 'fsharp',
+      \ 'do':  'make fsautocomplete',
+      \}
+" =============== Vim-Plug end =============== 
+call plug#end()
 
 " =============== Visual =============== 
 set t_Co=256
@@ -140,13 +157,8 @@ filetype plugin on
 filetype plugin indent on
 
 " autocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#disable_auto_complete = 1
-
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#auto_complete_delay = 1000
-let g:neocomplete#max_list = 10
+let g:deoplete#enable_at_startup = 1
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 " auto close buffers after cursor movement
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -227,3 +239,8 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8']
 \}
+
+let g:fsharp_completion_helptext = 1
+let g:fsharp_helptext_comments = 1
+let g:fsharpbinding_debug = 1
+
