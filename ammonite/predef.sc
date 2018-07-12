@@ -18,6 +18,7 @@ import $ivy.`co.fs2::fs2-core:0.10.4`
 
 import $ivy.`org.tpolecat::doobie-core:0.5.3` 
 import $ivy.`org.tpolecat::doobie-postgres:0.5.3`
+import $ivy.`org.tpolecat::doobie-hikari:0.5.3`
 import $ivy.`ru.yandex.clickhouse:clickhouse-jdbc:0.1.36`
 
 import $ivy.`org.json4s::json4s-native:3.6.0-M4`
