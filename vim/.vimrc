@@ -58,11 +58,6 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
-Plug 'fsharp/vim-fsharp', {
-      \ 'for': 'fsharp',
-      \ 'do':  'make fsautocomplete',
-      \}
 " =============== Vim-Plug end =============== 
 call plug#end()
 
@@ -241,8 +236,4 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8']
 \}
-
-let g:fsharp_completion_helptext = 1
-let g:fsharp_helptext_comments = 1
-let g:fsharpbinding_debug = 1
 
