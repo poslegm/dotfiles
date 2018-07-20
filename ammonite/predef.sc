@@ -28,6 +28,8 @@ import $ivy.`io.circe::circe-parser:0.9.3`
 
 import $ivy.`com.github.pathikrit::better-files:3.4.0`
 
+import $ivy.`com.lihaoyi::requests:0.1.2`
+
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl._
