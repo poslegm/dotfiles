@@ -1,3 +1,5 @@
+interp.configureCompiler(_.settings.YpartialUnification.value = true)
+
 import $ivy.`org.typelevel::cats-effect:1.0.0-RC`
 import $ivy.`org.typelevel::cats-core:1.0.1`
 
