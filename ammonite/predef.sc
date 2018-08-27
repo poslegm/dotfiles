@@ -40,6 +40,5 @@ import scala.concurrent.duration._
 import scala.util.{Try, Success, Failure}
 
 implicit val actorSystem = ActorSystem()
-import actorSystem.dispatcher
 implicit val actorMaterializer = ActorMaterializer()
 implicit val monixScheduler = monix.execution.Scheduler(actorSystem.dispatcher)
