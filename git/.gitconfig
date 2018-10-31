@@ -41,3 +41,5 @@
     l = log --graph --abbrev-commit --date=relative
     la = !git l --all
     tree = !git la --oneline
+[merge]
+    conflictstyle = diff3
