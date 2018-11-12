@@ -33,7 +33,7 @@ export SCALA_HOME=/usr/local/share/scala
 export PATH=$SCALA_HOME/bin:/home/poslegm/.local/bin:$HOME/bin:/usr/local/bin:$PATH
 export ZSH=/home/poslegm/.oh-my-zsh
 export GOPATH=/home/poslegm/Documents/Go
-export PATH=$PATH:~/.gem/ruby/2.3.0/bin/
+export PATH=$PATH:~/.gem/ruby/2.5.0/bin/
 export VISUAL="vim"
 export EDITOR="vim"
 
