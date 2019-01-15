@@ -17,24 +17,14 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " File tree
 Plugin 'scrooloose/nerdtree'
-" Git
-Plugin 'tpope/vim-fugitive'
 " Colors
 Plugin 'nanotech/jellybeans.vim'
-" Autocomplete
-Plugin 'ervandew/supertab'
 " Syntax checking
 Plugin 'w0rp/ale'
 " lexical check
 Plugin 'reedes/vim-lexical'
-" exuberant-ctags
-Plugin 'xolox/vim-easytags'
-Plugin 'xolox/vim-misc'
-Plugin 'majutsushi/tagbar'
 " Fast commenting
 Plugin 'scrooloose/nerdcommenter'
-" For :UndotreeToggle
-Plugin 'mbbill/undotree'
 " For :Replace 
 Plugin 'dkprice/vim-easygrep'
 " Auto-close brackets
@@ -56,9 +46,6 @@ Plug 'natebosch/vim-lsc'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 " =============== Vim-Plug end =============== 
 call plug#end()
@@ -158,7 +145,6 @@ filetype plugin indent on
 
 " autocomplete
 let g:deoplete#enable_at_startup = 1
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 set cpt=.,b,w,i
 call deoplete#custom#option('ignore_sources', {'_': ['tag']})
 
@@ -168,8 +154,6 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " auto close html tags
 let g:closetag_html_style=1 
-
-let g:easytags_async = 1
 
 let g:lexical#spelllang = ['en_us', 'ru_ru',]
 
@@ -205,8 +189,6 @@ imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
-nmap <silent> <leader>z :UndotreeToggle<CR>
-nmap <F6> :TagbarToggle<CR>
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
