@@ -51,6 +51,8 @@ call vundle#end()
 
 call plug#begin('~/.vim/plugged')
 " ============= Vim-Plug begin =============== 
+Plug 'derekwyatt/vim-scala'
+Plug 'natebosch/vim-lsc'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -133,6 +135,9 @@ set hidden " hide buffers instead of closing
 set nobackup
 set noswapfile
 
+set nospell
+let g:lexical#dictionary = []
+
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 
@@ -166,13 +171,6 @@ let g:closetag_html_style=1
 
 let g:easytags_async = 1
 
-let g:lexical#spell = 1
-augroup lexical
-  autocmd!
-  autocmd FileType markdown,mkd call lexical#init()
-  autocmd FileType textile call lexical#init()
-  autocmd FileType text call lexical#init({ 'spell': 0 })
-augroup END
 let g:lexical#spelllang = ['en_us', 'ru_ru',]
 
 " =============== Shortcuts =============== 
@@ -237,3 +235,17 @@ let g:ale_linters = {
 \   'python': ['flake8']
 \}
 
+" Configuration for vim-scala
+au BufRead,BufNewFile *.sbt set filetype=scala
+
+" Configuration for vim-lsc
+let g:lsc_enable_autocomplete = v:false
+let g:lsc_server_commands = {
+  \  'scala': {
+  \    'command': 'metals-vim',
+  \    'log_level': 'Log'
+  \  }
+  \}
+let g:lsc_auto_map = {
+  \  'GoToDefinition': 'gd',
+  \}
