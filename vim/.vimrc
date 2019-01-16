@@ -4,45 +4,45 @@ set encoding=utf-8
 
 let $PATH = $PATH . ':' . expand("~/.local/bin")
 
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-
-" =============== Plugins start =============== 
-
-" Utils
-Plugin 'VundleVim/Vundle.vim'
-" Status line
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-" File tree
-Plugin 'scrooloose/nerdtree'
-" Colors
-Plugin 'nanotech/jellybeans.vim'
-" Syntax checking
-Plugin 'w0rp/ale'
-" lexical check
-Plugin 'reedes/vim-lexical'
-" Fast commenting
-Plugin 'scrooloose/nerdcommenter'
-" For :Replace 
-Plugin 'dkprice/vim-easygrep'
-" Auto-close brackets
-Plugin 'Townk/vim-autoclose'
-Plugin 'alvan/vim-closetag'
-" Python
-Plugin 'davidhalter/jedi-vim'
-" some formats
-Plugin 'elzr/vim-json'
-Plugin 'tpope/vim-fireplace' 
-Plugin 'guns/vim-clojure-static' 
-" =============== Plugins end =============== 
-call vundle#end()
+" plugin manager installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/plugged')
 " ============= Vim-Plug begin =============== 
+" Utils
+Plug 'VundleVim/Vundle.vim'
+" Status line
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" File tree
+Plug 'scrooloose/nerdtree'
+" Colors
+Plug 'nanotech/jellybeans.vim'
+" Syntax checking
+Plug 'w0rp/ale'
+" lexical check
+Plug 'reedes/vim-lexical'
+" Fast commenting
+Plug 'scrooloose/nerdcommenter'
+" For :Replace 
+Plug 'dkprice/vim-easygrep'
+" Auto-close brackets
+Plug 'Townk/vim-autoclose'
+Plug 'alvan/vim-closetag'
+" Python
+Plug 'davidhalter/jedi-vim'
+" some formats
+Plug 'elzr/vim-json'
+Plug 'tpope/vim-fireplace' 
+Plug 'guns/vim-clojure-static' 
+" for scala (metals)
 Plug 'derekwyatt/vim-scala'
 Plug 'natebosch/vim-lsc'
+
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -155,8 +155,10 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " auto close html tags
 let g:closetag_html_style=1 
 
-let g:lexical#spelllang = ['en_us', 'ru_ru',]
-
+" russian keymap
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
 " =============== Shortcuts =============== 
 let mapleader=","
 
@@ -196,6 +198,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 
+" keyboard layout switch in insert mode
+imap <C-z> <C-^>
 " =============== Utils =============== 
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
