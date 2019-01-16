@@ -12,19 +12,16 @@ Some dependencies install equally on all unix-like systems (make download-deps).
 
 Main packages:
 * zsh (should be default shell)
-* gvim
+* neovim 
 * tmux
 * git
 
 Plugins managers:
-* Vundle [ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim ]
+* vim-plug [ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ]
 * tpm [ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm ]
 * oh-my-zsh [ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" ]
 
 Dependencies:
-* ctags
-* vim-vimproc
-* vim-runtime
 * powerlevel9k [ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k ]
 * nerd-fonts-complete or other fonts with lot of icons like 
 * unclutter
