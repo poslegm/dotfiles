@@ -42,6 +42,7 @@ Plug 'guns/vim-clojure-static'
 " for scala (metals)
 Plug 'derekwyatt/vim-scala'
 Plug 'natebosch/vim-lsc'
+Plug 'Chiel92/vim-autoformat' 
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -198,6 +199,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 
+noremap <C-S-L> :Autoformat<CR>
+
 " keyboard layout switch in insert mode
 imap <C-z> <C-^>
 " =============== Utils =============== 
@@ -235,3 +238,6 @@ let g:lsc_server_commands = {
 let g:lsc_auto_map = {
   \  'GoToDefinition': 'gd',
   \}
+
+let g:formatdef_scalafmt = "'scalafmt --stdin'"
+let g:formatters_scala = ['scalafmt']
