@@ -28,8 +28,10 @@ Plug 'w0rp/ale'
 Plug 'reedes/vim-lexical'
 " Fast commenting
 Plug 'scrooloose/nerdcommenter'
-" For :Replace 
-Plug 'dkprice/vim-easygrep'
+" For replace via (:Acks /foo/bar/) 
+Plug 'wincent/ferret'
+" for file search
+Plug 'kien/ctrlp.vim'
 " Auto-close brackets
 Plug 'Townk/vim-autoclose'
 Plug 'alvan/vim-closetag'
