@@ -41,6 +41,8 @@ Plug 'davidhalter/jedi-vim'
 Plug 'elzr/vim-json'
 Plug 'tpope/vim-fireplace' 
 Plug 'guns/vim-clojure-static' 
+" for git changes
+Plug 'airblade/vim-gitgutter'
 " for scala (metals)
 Plug 'derekwyatt/vim-scala'
 Plug 'natebosch/vim-lsc'
@@ -241,5 +243,5 @@ let g:lsc_auto_map = {
   \  'GoToDefinition': 'gd',
   \}
 
-let g:formatdef_scalafmt = "'scalafmt --stdin'"
+let g:formatdef_scalafmt = "'scalafmt --stdin 2>/dev/null'"
 let g:formatters_scala = ['scalafmt']
