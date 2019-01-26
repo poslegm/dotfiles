@@ -13,8 +13,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " ============= Vim-Plug begin =============== 
-" Utils
-Plug 'VundleVim/Vundle.vim'
 " Status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -24,8 +22,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'nanotech/jellybeans.vim'
 " Syntax checking
 Plug 'w0rp/ale'
-" lexical check
-Plug 'reedes/vim-lexical'
 " Fast commenting
 Plug 'scrooloose/nerdcommenter'
 " For replace via (:Acks /foo/bar/) 
@@ -35,14 +31,14 @@ Plug 'kien/ctrlp.vim'
 " Auto-close brackets
 Plug 'Townk/vim-autoclose'
 Plug 'alvan/vim-closetag'
+" for git changes
+Plug 'airblade/vim-gitgutter'
 " Python
 Plug 'davidhalter/jedi-vim'
 " some formats
 Plug 'elzr/vim-json'
 Plug 'tpope/vim-fireplace' 
 Plug 'guns/vim-clojure-static' 
-" for git changes
-Plug 'airblade/vim-gitgutter'
 " for scala (metals)
 Plug 'derekwyatt/vim-scala'
 Plug 'natebosch/vim-lsc'
@@ -219,6 +215,8 @@ endif
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
+
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|metals|bloop|ensime|idea))|(target|project\/target)$'
 
 " =============== Languages =============== 
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
