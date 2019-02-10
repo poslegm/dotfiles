@@ -238,7 +238,15 @@ let g:lsc_server_commands = {
   \  }
   \}
 let g:lsc_auto_map = {
-  \  'GoToDefinition': 'gd',
+  \ 'GoToDefinition': 'gd',
+  \ 'FindReferences': 'gr',
+  \ 'FindImplementations': 'gI',
+  \ 'FindCodeActions': 'ga',
+  \ 'Rename': 'gR',
+  \ 'ShowHover': v:true,
+  \ 'DocumentSymbol': 'go',
+  \ 'WorkspaceSymbol': 'gS',
+  \ 'SignatureHelp': '<C-m>',
   \}
 
 let g:formatdef_scalafmt = "'scalafmt --stdin 2>/dev/null'"
