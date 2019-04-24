@@ -17,3 +17,4 @@ install:
 	vim -c PlugInstall
 	mkdir -p ~/.config/nvim
 	ln -sv "/home/poslegm/.dotfiles/vim/neovim-init.vim" ~/.config/nvim/init.vim
+	ln -sv "/home/poslegm/.dotfiles/vim/coc-settings.json" ~/.config/nvim/coc-settings.json
