@@ -41,6 +41,7 @@ Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-static' 
 " for scala 
 Plug 'derekwyatt/vim-scala'
+Plug 'Chiel92/vim-autoformat' 
 
 Plug 'wakatime/vim-wakatime'
 
