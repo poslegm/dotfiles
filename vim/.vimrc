@@ -43,7 +43,7 @@ Plug 'guns/vim-clojure-static'
 Plug 'derekwyatt/vim-scala'
 Plug 'Chiel92/vim-autoformat' 
 
-Plug 'wakatime/vim-wakatime'
+Plug 'itchyny/calendar.vim'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -237,3 +237,5 @@ set updatetime=300
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
+
+let g:calendar_google_calendar = 1

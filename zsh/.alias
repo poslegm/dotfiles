@@ -6,5 +6,4 @@ alias size='du -sh'
 alias tmuxon='(tmux attach || tmux new) && tdef'
 alias tdef='~/.dotfiles/tmux/default-session.sh'
 alias tide='~/.dotfiles/tmux/ide-session.sh'
-# Because libreoffice works bad on HiDPI with default settings
-alias librewriter='env SAL_USE_VCLPLUGIN=gtk libreoffice --writer &'
+alias vim=nvim
