@@ -32,10 +32,12 @@ ZSH_TMUX_AUTOSTART=false
 export SCALA_HOME=/usr/local/share/scala
 export PATH=$SCALA_HOME/bin:/home/poslegm/.local/bin:$HOME/bin:/usr/local/bin:$PATH
 export ZSH=/home/poslegm/.oh-my-zsh
-export GOPATH=/home/poslegm/Documents/Go
 export PATH=$PATH:~/.gem/ruby/2.5.0/bin/
-export VISUAL="vim"
-export EDITOR="vim"
+export VISUAL="nvim"
+export EDITOR="nvim"
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 # ====== SHELL ====== 
 alias -s {py,ml,hs,erl,scala,java,go,cpp,c}=vim

@@ -43,8 +43,6 @@ Plug 'guns/vim-clojure-static'
 Plug 'derekwyatt/vim-scala'
 Plug 'Chiel92/vim-autoformat' 
 
-Plug 'wakatime/vim-wakatime'
-
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
