@@ -23,7 +23,7 @@ ENABLE_CORRECTION=""
 
 HIST_STAMPS="dd-mm-yyyy"
 
-plugins=(archlinux tmux scala sbt pip python vagrant stack)
+plugins=(archlinux tmux scala sbt pip python vagrant)
 
 # automatically start a tmux session upon logging in
 ZSH_TMUX_AUTOSTART=false
@@ -35,9 +35,6 @@ export ZSH=/home/poslegm/.oh-my-zsh
 export PATH=$PATH:~/.gem/ruby/2.5.0/bin/
 export VISUAL="nvim"
 export EDITOR="nvim"
-# jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
 
 # ====== SHELL ====== 
 alias -s {py,ml,hs,erl,scala,java,go,cpp,c}=vim
