@@ -1,26 +1,23 @@
-interp.configureCompiler(_.settings.YpartialUnification.value = true)
+import $ivy.`org.typelevel::cats-effect:2.1.0`
+import $ivy.`org.typelevel::cats-core:2.1.0`
 
-import $ivy.`org.typelevel::cats-effect:1.1.0`
-import $ivy.`org.typelevel::cats-core:1.5.0`
-
-import $ivy.`com.github.julien-truffaut::monocle-core:1.5.1-cats`
+import $ivy.`com.github.julien-truffaut::monocle-core:2.0.3`
 
 import $ivy.`com.chuusai::shapeless:2.3.3`
 
-import $ivy.`com.typesafe.akka::akka-actor:2.5.19`
-import $ivy.`com.typesafe.akka::akka-http-core:10.1.7`
-import $ivy.`com.typesafe.akka::akka-http:10.1.7`
+import $ivy.`com.typesafe.akka::akka-actor:2.6.3`
+import $ivy.`com.typesafe.akka::akka-http-core:10.1.10`
+import $ivy.`com.typesafe.akka::akka-http:10.1.10`
 
-import $ivy.`com.typesafe.akka::akka-stream:2.5.19`
-import $ivy.`io.monix::monix:3.0.0-RC2`
-import $ivy.`co.fs2::fs2-core:1.0.2`
+import $ivy.`com.typesafe.akka::akka-stream:2.6.3`
+import $ivy.`io.monix::monix:3.1.0`
+import $ivy.`co.fs2::fs2-core:2.2.2`
 
-import $ivy.`org.json4s::json4s-native:3.6.3`
-import $ivy.`io.circe::circe-core:0.11.1`
-import $ivy.`io.circe::circe-generic:0.11.1`
-import $ivy.`io.circe::circe-parser:0.11.1`
+import $ivy.`io.circe::circe-core:0.13.0`
+import $ivy.`io.circe::circe-generic:0.13.0`
+import $ivy.`io.circe::circe-parser:0.13.0`
 
-import $ivy.`com.lihaoyi::requests:0.1.4`
+import $ivy.`com.lihaoyi::requests:0.5.1`
 
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
