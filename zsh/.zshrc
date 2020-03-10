@@ -35,6 +35,7 @@ export ZSH=/home/poslegm/.oh-my-zsh
 export PATH=$PATH:~/.gem/ruby/2.5.0/bin/
 export VISUAL="nvim"
 export EDITOR="nvim"
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 
 # ====== SHELL ====== 
 alias -s {py,ml,hs,erl,scala,java,go,cpp,c}=vim
