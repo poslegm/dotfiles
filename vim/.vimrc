@@ -196,7 +196,7 @@ imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 
 map ]b :bn<cr>
 map [b :bp<cr>
-map db :bd<cr>
+nmap db :bd<cr>
 
 " find merge conflict markers
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
