@@ -43,6 +43,9 @@ Plug 'guns/vim-clojure-static'
 Plug 'derekwyatt/vim-scala'
 Plug 'Chiel92/vim-autoformat' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" for TS
+Plug 'leafgarland/typescript-vim'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -226,9 +229,12 @@ if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
 
-let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|metals|bloop|ensime|idea))|(target|project\/target|node_modules)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|metals|bloop|ensime|idea))|(target|project\/target|node_modules|dist)$'
 
 " =============== Languages =============== 
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat = 1
+
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
 let g:ale_linters = {
 \   'go': ['go build', 'go vet'],
