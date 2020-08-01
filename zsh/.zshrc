@@ -54,4 +54,5 @@ SAVEHIST=1000
 setopt appendhistory
 bindkey -e
 
+ZSH_DISABLE_COMPFIX=true
 source $ZSH/oh-my-zsh.sh
