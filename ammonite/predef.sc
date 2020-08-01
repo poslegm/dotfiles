@@ -5,13 +5,12 @@ import $ivy.`com.github.julien-truffaut::monocle-core:2.0.0`
 
 import $ivy.`io.monix::monix:3.0.0`
 
-import $ivy.`dev.zio::zio:1.0.0-RC18`
-import $ivy.`dev.zio::zio-interop-cats:2.0.0.0-RC6`
+import $ivy.`dev.zio::zio:1.0.0-RC21-2`
 
 import monix.eval.Task
 import monix.reactive.Observable
 import scala.concurrent.{Future, ExecutionContext}
-import scala.concurrent.duration._
 import scala.util.{Try, Success, Failure}
+import zio._
 
 implicit val monixScheduler = monix.execution.Scheduler.forkJoin(4, 8)

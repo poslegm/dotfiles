@@ -33,6 +33,7 @@ export SCALA_HOME=/usr/local/share/scala
 export PATH=$SCALA_HOME/bin:/Users/poslegm/.local/bin:$HOME/bin:/usr/local/bin:$PATH
 export ZSH=/Users/poslegm/.oh-my-zsh
 export PATH=$PATH:~/.gem/ruby/2.5.0/bin/
+export PATH="$PATH:/Users/poslegm/Library/Application Support/Coursier/bin"
 export VISUAL="nvim"
 export EDITOR="nvim"
 # jenv
