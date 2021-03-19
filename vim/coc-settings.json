@@ -1,6 +1,11 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["scala"],
-  "suggest.noselect": false,
-  "suggest.enablePreview": true,
-  "metals.statusBarEnabled": true
+    "coc.preferences.formatOnSaveFiletypes": ["scala"],
+    "codeLens.enable": true,
+    "suggest.noselect": false,
+    "suggest.enablePreview": true,
+    "metals.statusBarEnabled": true,
+    "metals.superMethodLensesEnabled": true,
+    "metals.showInferredType": true,
+    "metals.showImplicitArguments": true,
+    "metals.showImplicitConversionsAndClasses": true
 }

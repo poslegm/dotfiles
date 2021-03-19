@@ -45,6 +45,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " for TS
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 if has('nvim')
@@ -146,6 +147,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 autocmd Filetype scala setlocal ts=2 sw=2 autoindent
+autocmd Filetype ts setlocal ts=2 sw=2 autoindent
 autocmd Filetype ocaml setlocal ts=2 sw=2 autoindent
 autocmd Filetype sh setlocal ts=2 sw=2 autoindent
 
@@ -274,8 +276,10 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -314,6 +318,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add status line support, for integration with other plugins, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+nnoremap <leader>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
 
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
