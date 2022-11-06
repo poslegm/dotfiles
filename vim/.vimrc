@@ -29,7 +29,7 @@ Plug 'wincent/ferret'
 " for file search
 Plug 'kien/ctrlp.vim'
 " Auto-close brackets
-Plug 'Townk/vim-autoclose'
+Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 " for git changes
 Plug 'airblade/vim-gitgutter'
@@ -211,8 +211,8 @@ nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
-vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+nnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
+vnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
 
 noremap <C-S-L> :Autoformat<CR>
 
@@ -235,7 +235,7 @@ let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|metals|bloop|ensime|idea))|(ta
 
 " =============== Languages =============== 
 let g:prettier#autoformat_require_pragma = 0
-let g:prettier#autoformat = 1
+let g:prettier#autoformat = 0
 
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
 let g:ale_linters = {
@@ -338,10 +338,22 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" Notify coc.nvim that <enter> has been pressed.
-" Currently used for the formatOnType feature.
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Use <C-n>, <C-p>, <up> and <down> to navigate completion list: >
+inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(1) : "\<down>"
+inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(1) : "\<up>"
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Toggle panel with Tree Views
 nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
