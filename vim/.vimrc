@@ -29,7 +29,7 @@ Plug 'wincent/ferret'
 " for file search
 Plug 'kien/ctrlp.vim'
 " Auto-close brackets
-Plug 'Townk/vim-autoclose'
+Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 " for git changes
 Plug 'airblade/vim-gitgutter'
@@ -42,8 +42,11 @@ Plug 'guns/vim-clojure-static'
 " for scala 
 Plug 'derekwyatt/vim-scala'
 Plug 'Chiel92/vim-autoformat' 
-
-Plug 'itchyny/calendar.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" for TS
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -96,7 +99,10 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
+let g:airline_symbols.maxlinenr = ''
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -133,11 +139,15 @@ set backspace=eol,start,indent
 set history=500
 set undolevels=500
 
+" Better display for messages
+set cmdheight=2
+
 set autoindent
 set expandtab
 set tabstop=4
 set shiftwidth=4
 autocmd Filetype scala setlocal ts=2 sw=2 autoindent
+autocmd Filetype ts setlocal ts=2 sw=2 autoindent
 autocmd Filetype ocaml setlocal ts=2 sw=2 autoindent
 autocmd Filetype sh setlocal ts=2 sw=2 autoindent
 
@@ -146,7 +156,7 @@ filetype plugin on
 filetype plugin indent on
 
 " autocomplete
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 set cpt=.,b,w,i
 call deoplete#custom#option('ignore_sources', {'_': ['tag']})
 
@@ -189,6 +199,10 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
 imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 
+map ]b :bn<cr>
+map [b :bp<cr>
+nmap db :bd<cr>
+
 " find merge conflict markers
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
@@ -197,8 +211,8 @@ nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
-vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+nnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
+vnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
 
 noremap <C-S-L> :Autoformat<CR>
 
@@ -217,9 +231,12 @@ if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
 endif
 
-let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|metals|bloop|ensime|idea))|(target|project\/target)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|metals|bloop|ensime|idea))|(target|project\/target|node_modules|dist)$'
 
 " =============== Languages =============== 
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat = 0
+
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
 let g:ale_linters = {
 \   'go': ['go build', 'go vet'],
@@ -237,5 +254,112 @@ set updatetime=300
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
+" =============== Languages end =============== 
 
-let g:calendar_google_calendar = 1
+" =============== CoC and Metals =============== 
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Used to expand decorations in worksheets
+nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
+
+" Use K to either doHover or show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType scala setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add status line support, for integration with other plugins, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+nnoremap <leader>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
+
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Use <C-n>, <C-p>, <up> and <down> to navigate completion list: >
+inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(1) : "\<down>"
+inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(1) : "\<up>"
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Toggle panel with Tree Views
+nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
+" Toggle Tree View 'metalsBuild'
+nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
+" Toggle Tree View 'metalsCompile'
+nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
+" Reveal current current class (trait or object) in Tree View 'metalsBuild'
+nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsBuild<CR>
