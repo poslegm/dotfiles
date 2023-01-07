@@ -1,9 +1,15 @@
+# arcadia completion
+fpath+=~/.zfunc
+# We have to put this line here, due to the fact that
+# the async plugin performs a test run of the zpty and
+# this leads to a command line flicker.
+source ~/.oh-my-zsh/custom/plugins/zsh-async/async.zsh
 export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
 # ====== VISUAL ====== 
 export TERM="xterm-256color"
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # command auto-correction.
 ENABLE_CORRECTION=""
@@ -45,3 +51,4 @@ ZSH_DISABLE_COMPFIX=true
 
 source $ZSH/oh-my-zsh.sh
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+source ${ZSH_CUSTOM}/themes/powerlevel10k-prompt-arc/arc.zsh
