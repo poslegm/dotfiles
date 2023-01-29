@@ -47,11 +47,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-endif
 " =============== Vim-Plug end =============== 
 call plug#end()
 
@@ -156,9 +151,7 @@ filetype plugin on
 filetype plugin indent on
 
 " autocomplete
-let g:deoplete#enable_at_startup = 0
 set cpt=.,b,w,i
-call deoplete#custom#option('ignore_sources', {'_': ['tag']})
 
 " auto close buffers after cursor movement
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
