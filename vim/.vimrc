@@ -218,6 +218,15 @@ noremap <C-S-L> :Autoformat<CR>
 
 " keyboard layout switch in insert mode
 imap <C-z> <C-^>
+
+" enable relative line numbers only in Normal mode
+" source: https://github.com/jeffkreeftmeijer/vim-numbertoggle/blob/main/plugin/number_toggle.vim
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
+
 " =============== Utils =============== 
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
