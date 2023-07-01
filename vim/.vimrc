@@ -43,6 +43,8 @@ Plug 'guns/vim-clojure-static'
 Plug 'derekwyatt/vim-scala'
 Plug 'Chiel92/vim-autoformat' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scalameta/nvim-metals'
+Plug 'nvim-lua/plenary.nvim'
 " for TS
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
@@ -263,117 +265,71 @@ set updatetime=300
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
-" =============== Languages end =============== 
+" =============== Languages end ================
+" =============== NVIM Metals ==================
 
-" =============== CoC and Metals =============== 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+"-----------------------------------------------------------------------------
+" nvim-lsp Mappings
+"-----------------------------------------------------------------------------
+nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gi          <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gds         <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gws         <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> <leader>rn  <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <leader>f   <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> <leader>ca  <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <leader>ws  <cmd>lua require'metals'.worksheet_hover()<CR>
+nnoremap <silent> <leader>a   <cmd>lua require'metals'.open_all_diagnostics()<CR>
+nnoremap <silent> <space>d    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <silent> [c          <cmd>lua vim.lsp.diagnostic.goto_prev { wrap = false }<CR>
+nnoremap <silent> ]c          <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+"-----------------------------------------------------------------------------
+" nvim-lsp Settings
+"-----------------------------------------------------------------------------
+" If you just use the latest stable version, then setting this isn't necessary
+"let g:metals_server_version = '0.9.8+10-334e402e-SNAPSHOT'
 
-" Used to expand decorations in worksheets
-nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
+"-----------------------------------------------------------------------------
+" nvim-metals setup with a few additions such as nvim-completions
+"-----------------------------------------------------------------------------
+:lua << EOF
+  metals_config = require'metals'.bare_config()
+  metals_config.settings = {
+     showImplicitArguments = true,
+     excludedPackages = {
+       "akka.actor.typed.javadsl",
+       "com.github.swagger.akka.javadsl"
+     }
+  }
 
-" Use K to either doHover or show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+  metals_config.on_attach = function()
+    require'completion'.on_attach();
+  end
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+  metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = {
+        prefix = '',
+      }
+    }
+  )
+EOF
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+if has('nvim-0.5')
+  augroup lsp
+    au!
+    au FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)
+  augroup end
+endif
 
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+"-----------------------------------------------------------------------------
+" Helpful general settings
+"-----------------------------------------------------------------------------
+" Needed for compltions _only_ if you aren't using completion-nvim
+autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType scala setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add status line support, for integration with other plugins, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-nnoremap <leader>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
-
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-" Use <C-n>, <C-p>, <up> and <down> to navigate completion list: >
-inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(1) : "\<down>"
-inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(1) : "\<up>"
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Toggle panel with Tree Views
-nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
-" Toggle Tree View 'metalsBuild'
-nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
-" Toggle Tree View 'metalsCompile'
-nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
-" Reveal current current class (trait or object) in Tree View 'metalsBuild'
-nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsBuild<CR>
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
