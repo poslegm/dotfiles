@@ -18,10 +18,10 @@ ZSH_TMUX_AUTOSTART=false
 export SCALA_HOME=/usr/local/share/scala
 export PATH=$SCALA_HOME/bin:/home/poslegm/.local/bin:$HOME/bin:/usr/local/bin:$PATH
 export ZSH=/home/poslegm/.oh-my-zsh
-export PATH=$PATH:~/.local/share/gem/ruby/2.7.0/bin/
+export PATH=$PATH:/opt/coursier
 export VISUAL="nvim"
 export EDITOR="nvim"
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk"
 
 # ====== SHELL ====== 
 alias -s {py,ml,hs,erl,scala,java,go,cpp,c}=vim
