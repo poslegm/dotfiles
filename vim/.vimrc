@@ -21,7 +21,7 @@ Plug 'scrooloose/nerdtree'
 " Colors
 Plug 'nanotech/jellybeans.vim'
 " Syntax checking
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 " Fast commenting
 Plug 'scrooloose/nerdcommenter'
 " For replace via (:Acks /foo/bar/) 
@@ -33,7 +33,16 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 " for git changes
 Plug 'airblade/vim-gitgutter'
-" Python
+" LSP
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'scalameta/nvim-metals'
+"" Python
 Plug 'davidhalter/jedi-vim'
 " some formats
 Plug 'elzr/vim-json'
@@ -234,6 +243,7 @@ endif
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn|metals|bloop|ensime|idea))|(target|project\/target|node_modules|dist)$'
 
 " =============== Languages =============== 
+let g:python3_host_prog = '/usr/bin/python3'
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#autoformat = 0
 
