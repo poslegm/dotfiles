@@ -4,6 +4,8 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+output Unknown-1 scale 2
+
 font pango: SourceCodePro Medium 12
 
 # gaps inner 4px
