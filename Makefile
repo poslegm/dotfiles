@@ -10,7 +10,7 @@ install:
 	ln -sv "/home/poslegm/.dotfiles/tmux/.tmux.conf" ~
 	mkdir ~/.ammonite 2> /dev/null; ln -sv "/home/poslegm/.dotfiles/ammonite/predef.sc" ~/.ammonite
 	mkdir -p ~/.config/nvim
-	ln -sv "/home/poslegm/.dotfiles/vim/neovim-init.vim" ~/.config/nvim/init.vim
+	ln -sv "/home/poslegm/.dotfiles/vim/neovim-init.lua" ~/.config/nvim/init.lua
 	ln -sv "/home/poslegm/.dotfiles/vim/coc-settings.json" ~/.config/nvim/coc-settings.json
 	vim -c PlugInstall
 	source "/home/poslegm/.zshenv"
