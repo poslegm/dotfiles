@@ -50,5 +50,6 @@ ZSH_DISABLE_COMPFIX=true
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source $ZSH/oh-my-zsh.sh
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+source ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 source ${ZSH_CUSTOM}/themes/powerlevel10k-prompt-arc/arc.zsh
+export ZSH_THEME="powerlevel10k/powerlevel10k"
