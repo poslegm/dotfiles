@@ -49,7 +49,7 @@ ZSH_DISABLE_COMPFIX=true
 # enable p10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 source $ZSH/oh-my-zsh.sh
 source ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 source ${ZSH_CUSTOM}/themes/powerlevel10k-prompt-arc/arc.zsh
-export ZSH_THEME="powerlevel10k/powerlevel10k"
