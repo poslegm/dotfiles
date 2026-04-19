@@ -7,3 +7,4 @@ alias tmuxon='tmux attach || tmux new'
 alias tdef='~/.dotfiles/tmux/default-session.sh'
 alias tide='~/.dotfiles/tmux/ide-session.sh'
 alias vim=nvim
+alias tar='gtar'
