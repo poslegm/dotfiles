@@ -37,6 +37,7 @@
     co = checkout
     cob = checkout -b
     com = checkout master
+    cot = checkout trunk
     mm = merge master
     l = log --graph --abbrev-commit --date=relative
     la = !git l --all
